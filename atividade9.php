@@ -11,8 +11,24 @@
           <input type="number" id="numero" name="numero2" required>
         <button type="submit" name="verificar">Verificar</button>
    </form>
+
    
     <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verificar'])) {
+        $numero1 = (int)$_POST['numero'];
+        $numero2 = (int)$_POST['numero2'];
+        $soma = 0;
+        if ($numero1 < $numero2) {
+            for ($i = $numero1 + 1; $i < $numero2; $i++) {
+                $soma += $i;
+            }
+        } else {
+            for ($i = $numero2 + 1; $i < $numero1; $i++) {
+                $soma += $i;
+            }   
+        }
+        echo "A soma de todos os números entre $numero1 e $numero2 é $soma.";
+    }
    
     ?>
 </body>
